@@ -6,7 +6,7 @@
 
 Lê os dados de notas de alunos de uma escola (nome, duas notas e faltas), calcula a média de cada um e mostra quem foi aprovado/reprovado.
 
-**Regra:** é aprovado quem tem média **6.0 ou mais** e **no máximo 8 faltas**.
+**Regra:** é aprovado quem tem média 6.0 ou mais e no máximo 8 faltas.
 
 ## Como rodar
 
