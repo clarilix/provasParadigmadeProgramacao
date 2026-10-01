@@ -40,17 +40,17 @@ Média da turma: 7.7 | Melhor média: 9.8
 ## Pilares usados
 
 ### Imperativo
-- **Estado mutável:** variáveis que mudam de valor (a lista `alunos` e os contadores).
-- **Sequência de comandos:** as instruções rodam na ordem em que foram escritas.
-- **Estruturas de controle:** `for` e `if`/`else` controlam o fluxo.
-- **Efeitos colaterais:** o `print` mostra algo na tela.
+ **Estado mutável:** variáveis que mudam de valor (a lista `alunos` e os contadores).
+ **Sequência de comandos:** as instruções rodam na ordem em que foram escritas.
+ **Estruturas de controle:** `for` e `if`/`else` controlam o fluxo.
+ **Efeitos colaterais:** o `print` mostra algo na tela.
 
 ### Funcional
-- **Funções puras:** `calcular_media`, `esta_aprovado` e `arredondar` só dependem do que recebem e não mudam nada fora delas.
-- **Imutabilidade:** o resultado é guardado em tuplas e em um dicionário novo.
-- **Funções de ordem superior:** `map`, `filter`, `reduce` e `compor` recebem ou devolvem funções.
-- **Recursão:** `maior_valor` chama a si mesma em vez de usar laço.
-- **Composição:** `compor` junta `arredondar` e `str` em uma função só.
+ **Funções puras:** `calcular_media`, `esta_aprovado` e `arredondar` só dependem do que recebem e não mudam nada fora delas.
+ **Imutabilidade:** o resultado é guardado em tuplas e em um dicionário novo.
+ **Funções de ordem superior:** `map`, `filter`, `reduce` e `compor` recebem ou devolvem funções.
+ **Recursão:** `maior_valor` chama a si mesma em vez de usar laço.
+ **Composição:** `compor` junta `arredondar` e `str` em uma função só.
 
 ## Requisitos 
 
