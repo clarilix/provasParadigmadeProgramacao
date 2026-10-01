@@ -1,0 +1,118 @@
+from functools import reduce
+
+# DADOS E CONSTANTES
+
+DADOS_BRUTOS = [
+    "Ana;8.5;9.0;2",
+    "Bruno;5.0;6.5;10",
+    "Carla;7.0;4.0;0",
+    "Diego;9.5;10.0;1",
+    "Gabriel;9.5;8.0;1"
+]
+MEDIA_MINIMA = 6.0   # float
+MAX_FALTAS = 8       # int
+
+
+# ETAPA 1 (IMPERATIVA): carregar os dados
+
+def carregar_alunos(linhas):
+
+    alunos = []
+
+    for linha in linhas:
+        nome, n1, n2, faltas = linha.split(";")
+        aluno = (nome, float(n1), float(n2), int(faltas))
+
+        alunos.append(aluno)
+    return alunos
+
+
+# ETAPA 2 (FUNCIONAL): calcular
+
+def calcular_media(aluno):
+
+    return (aluno[1] + aluno[2]) / 2
+
+
+def esta_aprovado(aluno):
+
+    return calcular_media(aluno) >= MEDIA_MINIMA and aluno[3] <= MAX_FALTAS
+
+
+def maior_valor(valores):
+
+    if len(valores) == 1:
+        return valores[0]
+    maior_do_resto = maior_valor(valores[1:])
+    return valores[0] if valores[0] > maior_do_resto else maior_do_resto
+
+
+def compor(*funcoes):
+
+    return lambda x: reduce(lambda acc, f: f(acc), funcoes, x)
+
+
+def arredondar(x):
+
+    return round(x, 1)
+
+
+def analisar_turma(alunos):
+
+    medias = tuple(map(calcular_media, alunos))
+
+    aprovados = tuple(map(lambda a: a[0], filter(esta_aprovado, alunos)))
+
+    media_turma = reduce(lambda a, b: a + b, medias) / len(medias)
+
+    formatar = compor(arredondar, str)
+    melhor = maior_valor(medias)
+
+    return {
+        "medias": medias,
+        "aprovados": aprovados,
+        "media_turma": formatar(media_turma),
+        "melhor_media": formatar(melhor),
+    }
+
+
+# ETAPA 3 (IMPERATIVA): mostrar resultado na tela
+
+def exibir_relatorio(alunos, analise):
+
+    contagem = {"aprovados": 0, "reprovados": 0}
+
+    print("=== RELATÓRIO DA TURMA ===")
+
+    for i in range(len(alunos)):
+        nome = alunos[i][0]
+        media = analise["medias"][i]             # valor vindo do cálculo FUNCIONAL
+        aprovado = nome in analise["aprovados"]  # bool vindo do cálculo FUNCIONAL
+
+        if aprovado:
+            situacao = "APROVADO"
+
+            contagem["aprovados"] += 1
+        else:
+            situacao = "REPROVADO"
+            contagem["reprovados"] += 1
+
+        print(f"{nome:<6} média {media:.1f}  ->  {situacao}")
+
+    print("-" * 30)
+    print(f"Aprovados: {contagem['aprovados']} | Reprovados: {contagem['reprovados']}")
+    print(f"Média da turma: {analise['media_turma']} | Melhor média: {analise['melhor_media']}")
+    return contagem
+
+
+# MAIN: sequência
+
+def main():
+
+    alunos = carregar_alunos(DADOS_BRUTOS)
+    analise = analisar_turma(alunos)
+    exibir_relatorio(alunos, analise)
+
+
+if __name__ == "__main__":
+    main()
