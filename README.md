@@ -1,6 +1,6 @@
-# Sistema de Notas – Prova Prática Paradigmas de Programação
+# Prova Prática Paradigmas de Programação: Sistema de Notas de Alunos
 **Discente:** Tereza Clarice da Silva Rocha 
-**Linguagem:** Python 3 
+
 
 ## O que o programa faz:
 
